@@ -4,7 +4,7 @@ A minimal, fast personal link hub built with [Astro](https://astro.build). Organ
 
 ## Features
 
-- **Content-driven** — Edit `src/data/links.json` to add/remove/reorder links
+- **Content-driven** — Edit `content/links/*.yml` files to add/remove/reorder links
 - **Categories** — Social, Development, Media, Tools (customizable)
 - **Featured section** — Pin important links at the top
 - **Custom SVG icons** — Drop SVGs in `public/icons/`, reference by path
@@ -24,40 +24,53 @@ npm run preview    # preview production build
 ## Project Structure
 
 ```
-src/
-├── components/
-│   └── LinkCard.astro    # Link card component (icon + title + desc)
-├── data/
-│   └── links.json        # All links — edit this to manage content
-├── pages/
-│   └── index.astro       # Main page, loads links.json
-├── styles/
-│   └── global.css        # Cyberpunk theme (CSS variables)
-public/
-├── icons/                # Custom SVG icons (referenced by iconPath)
-│   ├── github.svg
-│   ├── gitlab.svg
-│   ├── twitter.svg
-│   └── ...
-└── favicon.svg
+├── .github/workflows/
+│   └── deploy.yml           # GitHub Pages auto-deploy
+├── content/
+│   └── links/               # Modular YAML files (one per link)
+│       ├── github.yml
+│       ├── gitlab.yml
+│       ├── twitter.yml
+│       ├── youtube.yml
+│       ├── discord.yml
+│       ├── docker.yml
+│       ├── npm.yml
+│       ├── mdn.yml
+│       └── obsidian.yml
+├── public/
+│   ├── icons/               # Custom SVG icons (referenced by iconPath)
+│   │   ├── github.svg
+│   │   ├── gitlab.svg
+│   │   ├── twitter.svg
+│   │   └── ...
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── LinkCard.astro   # Link card component (icon + title + desc)
+│   ├── pages/
+│   │   └── index.astro      # Main page, auto-loads all content/links/*.yml
+│   └── styles/
+│       └── global.css       # Cyberpunk theme (CSS variables)
+├── astro.config.mjs
+├── package.json
+└── README.md
 ```
 
 ## Managing Links
 
-Edit `src/data/links.json`:
+Each link is a separate YAML file in `content/links/`:
 
-```json
-{
-  "title": "GitHub",
-  "url": "https://github.com/yourusername",
-  "description": "Public repos, contributions, stars",
-  "category": "dev",
-  "iconPath": "/icons/github.svg",
-  "featured": true
-}
+```yaml
+title: "GitHub"
+url: "https://github.com/yourusername"
+description: "Public repos, contributions, stars"
+category: "dev"
+iconPath: "/icons/github.svg"
+featured: true
 ```
 
 **Fields:**
+
 | Field | Required | Description |
 |-------|----------|-------------|
 | `title` | yes | Display name |
@@ -69,6 +82,12 @@ Edit `src/data/links.json`:
 | `featured` | no | `true` pins to top section |
 
 **Categories** are defined in `src/pages/index.astro` (`categoryOrder` + `categoryLabels`).
+
+### To add a new link:
+
+1. Add an SVG icon to `public/icons/yoursite.svg`
+2. Create `content/links/yoursite.yml` with the fields above
+3. Run `npm run build` — it auto-discovers all `.yml` files
 
 ## Adding Icons
 
@@ -101,37 +120,8 @@ Light mode auto-applies via `@media (prefers-color-scheme: light)`.
 
 1. Push to GitHub
 2. Settings → Pages → Source: **GitHub Actions**
-3. Add workflow `.github/workflows/deploy.yml`:
-
-```yaml
-name: Deploy to GitHub Pages
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: npm }
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: ./dist }
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/deploy-pages@v4
-```
-
-4. Push — site deploys automatically.
+3. The workflow `.github/workflows/deploy.yml` is already included
+4. Push — site deploys automatically on every push to `main`
 
 ## License
 
