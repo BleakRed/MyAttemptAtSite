@@ -2,5 +2,5 @@ title: "Obsidian Vault"
 url: "obsidian://open?vault=ObsidianVault"
 description: "Personal knowledge base"
 category: "tools"
-icon: "🧠"
+iconPath: "/icons/obsidian.svg"
 featured: false

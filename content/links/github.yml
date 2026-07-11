@@ -2,5 +2,5 @@ title: "GitHub"
 url: "https://github.com/yourusername"
 description: "Public repos, contributions, stars"
 category: "dev"
-icon: "🐙"
+iconPath: "/icons/github.svg"
 featured: true

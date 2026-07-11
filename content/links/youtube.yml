@@ -1,0 +1,6 @@
+title: "YouTube"
+url: "https://youtube.com/@yourchannel"
+description: "Video content, tutorials, music"
+category: "media"
+iconPath: "/icons/youtube.svg"
+featured: false

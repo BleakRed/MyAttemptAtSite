@@ -2,4 +2,5 @@ title: "npm"
 url: "https://www.npmjs.com/~yourusername"
 description: "Package registry, publish & discover packages"
 category: "tools"
-icon: "📦"
+iconPath: "/icons/npm.svg"
+featured: false

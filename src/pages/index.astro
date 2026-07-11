@@ -1,25 +1,33 @@
 ---
 import LinkCard from '../components/LinkCard.astro';
 import '../styles/global.css';
-import linksData from '../data/links.json';
 
-const allLinks = linksData;
+// Load all YAML files from content/links
+const linkModules = import.meta.glob<{ title: string; url: string; description: string; category: string; iconPath?: string; icon?: string; featured?: boolean }>('../../content/links/*.yml', { eager: true });
+
+const allLinks = Object.entries(linkModules).map(([path, mod]) => {
+	const data = mod.default || mod;
+	return {
+		id: path.split('/').pop()?.replace('.yml', ''),
+		...data,
+	};
+});
+
 const featured = allLinks.filter(l => l.featured).sort((a, b) => a.title.localeCompare(b.title));
 const byCategory = allLinks
-  .filter(l => !l.featured)
-  .reduce((acc, link) => {
-    if (!acc[link.category]) acc[link.category] = [];
-    acc[link.category].push(link);
-    return acc;
-  }, {} as Record<string, typeof allLinks>);
+	.filter(l => !l.featured)
+	.reduce((acc, link) => {
+		if (!acc[link.category]) acc[link.category] = [];
+		acc[link.category].push(link);
+		return acc;
+	}, {} as Record<string, typeof allLinks>);
 
-const categoryOrder = ['social', 'dev', 'media', 'tools', 'other'] as const;
+const categoryOrder = ['social', 'dev', 'media', 'tools'] as const;
 const categoryLabels = {
-  social: 'Social',
-  dev: 'Development',
-  media: 'Media',
-  tools: 'Tools',
-  other: 'Other',
+	social: 'Social',
+	dev: 'Development',
+	media: 'Media',
+	tools: 'Tools',
 };
 ---
 
@@ -61,7 +69,7 @@ const categoryLabels = {
 			})}
 
 			<footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-muted); font-size: 0.8rem;">
-				<p>Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> · Content in <code>src/data/links.json</code></p>
+				<p>Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> · Content in <code>content/links/</code></p>
 			</footer>
 		</main>
 	</body>

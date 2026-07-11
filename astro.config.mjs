@@ -1,5 +1,9 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
+import yaml from '@modyfi/vite-plugin-yaml';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+	contentDir: 'content',
+	vite: {
+		plugins: [yaml()],
+	},
+});
