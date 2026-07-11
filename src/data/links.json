@@ -1,0 +1,74 @@
+[
+	{
+		"title": "GitHub",
+		"url": "https://github.com/yourusername",
+		"description": "Public repos, contributions, stars",
+		"category": "dev",
+		"icon": "🐙",
+		"featured": true
+	},
+	{
+		"title": "Twitter / X",
+		"url": "https://x.com/yourusername",
+		"description": "Microblogging, tech discussions, hot takes",
+		"category": "social",
+		"icon": "🐦",
+		"featured": true
+	},
+	{
+		"title": "GitLab",
+		"url": "https://gitlab.com/yourusername",
+		"description": "Private repos, CI/CD, self-hosted projects",
+		"category": "dev",
+		"icon": "🦊",
+		"featured": false
+	},
+	{
+		"title": "YouTube",
+		"url": "https://youtube.com/@yourchannel",
+		"description": "Video content, tutorials, music",
+		"category": "media",
+		"icon": "▶️",
+		"featured": false
+	},
+	{
+		"title": "Discord",
+		"url": "https://discord.com/users/yourid",
+		"description": "Communities, DMs, voice chat",
+		"category": "social",
+		"icon": "💬",
+		"featured": false
+	},
+	{
+		"title": "npm",
+		"url": "https://www.npmjs.com/~yourusername",
+		"description": "Package registry, publish & discover packages",
+		"category": "tools",
+		"icon": "📦",
+		"featured": false
+	},
+	{
+		"title": "MDN Web Docs",
+		"url": "https://developer.mozilla.org",
+		"description": "Web technology reference & guides",
+		"category": "tools",
+		"icon": "📚",
+		"featured": false
+	},
+	{
+		"title": "Docker Hub",
+		"url": "https://hub.docker.com/u/yourusername",
+		"description": "Container images",
+		"category": "dev",
+		"icon": "🐳",
+		"featured": false
+	},
+	{
+		"title": "Obsidian Vault",
+		"url": "obsidian://open?vault=ObsidianVault",
+		"description": "Personal knowledge base",
+		"category": "tools",
+		"icon": "🧠",
+		"featured": false
+	}
+]

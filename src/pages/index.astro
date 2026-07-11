@@ -1,17 +1,68 @@
 ---
+import LinkCard from '../components/LinkCard.astro';
+import '../styles/global.css';
+import linksData from '../data/links.json';
 
+const allLinks = linksData;
+const featured = allLinks.filter(l => l.featured).sort((a, b) => a.title.localeCompare(b.title));
+const byCategory = allLinks
+  .filter(l => !l.featured)
+  .reduce((acc, link) => {
+    if (!acc[link.category]) acc[link.category] = [];
+    acc[link.category].push(link);
+    return acc;
+  }, {} as Record<string, typeof allLinks>);
+
+const categoryOrder = ['social', 'dev', 'media', 'tools', 'other'] as const;
+const categoryLabels = {
+  social: 'Social',
+  dev: 'Development',
+  media: 'Media',
+  tools: 'Tools',
+  other: 'Other',
+};
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Links Hub</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<main style="max-width: 720px; margin: 0 auto; padding: 2rem 1rem;">
+			<header style="margin-bottom: 2.5rem; text-align: center;">
+				<h1 style="font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.03em;">Links Hub</h1>
+				<p style="color: var(--color-muted); margin: 0; font-size: 1rem;">Frequently visited sites & useful links</p>
+			</header>
+
+			{featured.length > 0 && (
+				<section style="margin-bottom: 2.5rem;">
+					<h2 style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent); margin: 0 0 1rem;">Featured</h2>
+					<div style="display: flex; flex-direction: column; gap: 0.75rem;">
+						{featured.map(link => <LinkCard {...link} />)}
+					</div>
+				</section>
+			)}
+
+			{categoryOrder.map(cat => {
+				const links = byCategory[cat];
+				if (!links?.length) return null;
+				return (
+					<section style="margin-bottom: 2.5rem;">
+						<h2 style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted); margin: 0 0 1rem;">{categoryLabels[cat]}</h2>
+						<div style="display: flex; flex-direction: column; gap: 0.75rem;">
+							{links.sort((a, b) => a.title.localeCompare(b.title)).map(link => <LinkCard {...link} />)}
+						</div>
+					</section>
+				);
+			})}
+
+			<footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-muted); font-size: 0.8rem;">
+				<p>Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> · Content in <code>src/data/links.json</code></p>
+			</footer>
+		</main>
 	</body>
 </html>

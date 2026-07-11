@@ -1,0 +1,79 @@
+:root {
+	/* Cyberpunk theme */
+	--color-bg: #0d0d0d;
+	--color-bg-elevated: #141414;
+	--color-card: #1a1a1a;
+	--color-border: #2a2a2a;
+	--color-text: #e0e0e0;
+	--color-muted: #888;
+	--color-accent: #00ffaa;
+	--color-accent-bg: rgba(0, 255, 170, 0.1);
+	--color-accent-dim: #00cc88;
+	--font-sans: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--color-bg: #f5f5f5;
+		--color-bg-elevated: #ffffff;
+		--color-card: #ffffff;
+		--color-border: #e0e0e0;
+		--color-text: #1a1a1a;
+		--color-muted: #666;
+		--color-accent: #00aa66;
+		--color-accent-bg: rgba(0, 170, 102, 0.1);
+		--color-accent-dim: #008855;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-sans);
+	line-height: 1.6;
+}
+
+a {
+	color: var(--color-accent);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+::selection {
+	background: var(--color-accent-bg);
+	color: var(--color-accent);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-border);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-muted);
+}
