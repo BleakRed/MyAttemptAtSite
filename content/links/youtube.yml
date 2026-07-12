@@ -1,6 +1,6 @@
 title: "YouTube"
-url: "https://youtube.com/@yourchannel"
+url: "https://youtube.com/@BleakRedMN"
 description: "Video content, tutorials, music"
 category: "media"
-iconPath: "/icons/youtube.svg"
-featured: false
+iconPath: "/icons/YouTube.png"
+featured: true
