@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "bundle_id": "ctx_5b06494a9110c5e530d1e0ed",
+  "workspace": "/home/bleakred/Projects/MyAttemptAtSite",
+  "created_at": "2026-07-13T06:37:22Z",
+  "agent": "ATHENA CODE",
+  "task": "",
+  "curated_context": "",
+  "sources": [
+    {
+      "kind": "project_instructions",
+      "path": "/home/bleakred/Projects/MyAttemptAtSite/AGENTS.md",
+      "content": "## Development\n\nWhen starting the dev server, use background mode:\n\n```\nastro dev --background\n```\n\nManage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.\n\n## Documentation\n\nFull documentation: https://docs.astro.build\n\nConsult these guides before working on related tasks:\n\n- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)\n- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)\n- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)\n- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)\n- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)\n- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)",
+      "sha256": "325cfe6c2a254a36cfc098e6ab8a3956b9940ce771e3bea0f76348a91b27077c",
+      "truncated": false
+    },
+    {
+      "kind": "athena_code_memory",
+      "path": null,
+      "content": "",
+      "sha256": null,
+      "truncated": false
+    },
+    {
+      "kind": "session_recall",
+      "path": "/home/bleakred/Projects/MyAttemptAtSite/.context-workspace/hermes/session-recall.md",
+      "content": "",
+      "sha256": null,
+      "truncated": false
+    }
+  ],
+  "warnings": [
+    "No Athena Code memory was available.",
+    "No Athena session recall cache was available."
+  ],
+  "bundle_path": "/home/bleakred/Projects/MyAttemptAtSite/.context-workspace/context/ctx_5b06494a9110c5e530d1e0ed/bundle.json",
+  "context_path": "/home/bleakred/Projects/MyAttemptAtSite/.context-workspace/context/ctx_5b06494a9110c5e530d1e0ed/context.md"
+}
